@@ -53,6 +53,9 @@ const Header = () => {
 
       {/* right */}
       <div className="flex items-center sm:space-x-2 pr-2 justify-end">
+        <Squares2X2Icon className="icon" />
+        <ChatBubbleOvalLeftEllipsisIcon className="icon" />
+        <BellIcon className="icon" />
         <Menu as="div" className="relative inline-block text-left">
           <div>
             <Menu.Button className="flex rounded-full active:scale-95 filter active:brightness-75 transition-all duration-150">
@@ -106,7 +109,13 @@ const Header = () => {
                     } flex items-center space-x-3 p-2 cursor-pointer`}
                     onClick={signOut}
                   >
-                    <ArrowRightOnRectangleIcon className="h-6" />
+                    <div
+                      className={`${
+                        active ? 'bg-gray-300' : 'bg-gray-200'
+                      } p-2 rounded-full`}
+                    >
+                      <ArrowRightOnRectangleIcon className="h-6" />
+                    </div>
                     <p className="whitespace-nowrap font-semibold lg:text-base">
                       Log Out
                     </p>
@@ -116,10 +125,6 @@ const Header = () => {
             </Menu.Items>
           </Transition>
         </Menu>
-
-        <Squares2X2Icon className="icon" />
-        <ChatBubbleOvalLeftEllipsisIcon className="icon" />
-        <BellIcon className="icon" />
       </div>
     </div>
   );
