@@ -8,7 +8,7 @@ import Image from 'next/image';
 const Post = ({ name, email, message, profileImage, postImage, timestamp }) => {
   return (
     <div className="flex flex-col bg-white rounded-2xl shadow-md mt-6">
-      <div className="flex items-center space-x-2 p-5">
+      <div className="flex items-center space-x-2 p-3 sm:p-5">
         <Image
           src={profileImage}
           height={40}
@@ -29,7 +29,7 @@ const Post = ({ name, email, message, profileImage, postImage, timestamp }) => {
         </div>
       </div>
 
-      <div className="pl-5 pr-5 mb-2">
+      <div className="pl-3 mb-2">
         <p className="whitespace-pre-line">{message}</p>
       </div>
 

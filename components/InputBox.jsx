@@ -74,8 +74,8 @@ const InputBox = () => {
     inputRef.current.value = '';
   };
   return (
-    <div className="bg-white rounded-2xl mt-6 p-2 text-gray-500 shadow-md font-medium">
-      <div className="flex items-center space-x-4 p-4">
+    <div className="bg-white rounded-2xl mt-6 p-1 sm:p-2 text-gray-500 shadow-md font-medium">
+      <div className="flex items-center space-x-2 sm:space-x-4 p-2 sm:p-4">
         <Image
           src={session.user.image}
           alt="profile-pic"
@@ -88,9 +88,12 @@ const InputBox = () => {
             ref={inputRef}
             onFocus={onFocus}
             onBlur={onBlur}
-            className={`text-xs sm:text-sm md:text-base bg-gray-100 px-5 h-12 rounded-full flex-grow focus:outline-none `}
+            className={`text-xs sm:text-sm md:text-base bg-gray-100 px-3 sm:px-5 h-10 sm:h-12 rounded-full flex-grow focus:outline-none `}
             type="text"
-            placeholder={`What's on your mind, ${session.user.name}?`}
+            placeholder={`What's on your mind, ${session.user.name.slice(
+              0,
+              session.user.name.search(' ')
+            )}?`}
           />
           <input type="submit" value="Submit" hidden onClick={sendPost} />
         </form>
@@ -102,7 +105,7 @@ const InputBox = () => {
             <img
               src={imageToPost}
               alt="post-pic"
-              className="object-contain h-10"
+              className="object-contain h-8 sm:h-10"
             />
 
             <p className="text-xs text-red-500 text-center">Remove</p>
@@ -137,10 +140,10 @@ const InputBox = () => {
         </div>
       </div>
 
-      <div className="p-4 flex lg:justify-center items-center">
+      <div className="p-2 sm:p-4 flex lg:justify-center items-center">
         <button
           onClick={sendPost}
-          className="bg-blue-500 w-full text-white px-3 py-2 rounded-md active:bg-blue-400 transition-colors duration-150"
+          className="bg-blue-500 w-full text-white py-1 sm:py-2 rounded-md active:bg-blue-400 transition-colors duration-150"
         >
           Post
         </button>

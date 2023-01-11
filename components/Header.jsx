@@ -22,16 +22,17 @@ const Header = () => {
   return (
     <div className="bg-white flex sticky top-0 z-50 space-x-4 items-center shadow-md p-2 lg:px-5">
       {/* left */}
-      <div className="flex items-center space-x-2 ">
+      <div className="flex items-center space-x-1 md:space-x-2 ">
         <Image
           src={'https://links.papareact.com/5me'}
           width={40}
           height={40}
           alt={'facebook-logo'}
+          className="max-h-8 max-w-8 sm:max-h-10 sm:max-w-10 object-contain"
         />
 
-        <div className="flex ml-2 p-2 items-center bg-gray-100 rounded-full">
-          <MagnifyingGlassIcon className="h-6 text-gray-600" />
+        <div className="flex p-1 sm:p-2 items-center bg-gray-100 rounded-full">
+          <MagnifyingGlassIcon className="h-4 sm:h-6 text-gray-600" />
           <input
             type="text"
             placeholder="Search Facebook"
