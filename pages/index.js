@@ -1,17 +1,23 @@
 import Head from 'next/head';
+
+import { getProviders, useSession } from 'next-auth/react';
+
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { db } from '../firebase';
+
 import Header from '../components/Header';
 import Login from '../components/Login';
 import Sidebar from '../components/Sidebar';
 import Feed from '../components/Feed';
 import Widgets from '../components/Widgets';
-import { useSession } from 'next-auth/react';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import { db } from '../firebase';
 
-const Home = ({ posts }) => {
+const Home = ({ providers, posts }) => {
   const { data: session } = useSession();
 
-  if (!session) return <Login />;
+  if (!session) {
+    return <Login providers={providers} />;
+  }
+
   return (
     <div className="h-screen bg-gray-100 overflow-hidden">
       <Head>
@@ -34,7 +40,9 @@ const Home = ({ posts }) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const providers = await getProviders();
+
   const postsRef = collection(db, 'posts');
   const q = query(postsRef, orderBy('timestamp', 'desc'));
   const querySnapshot = await getDocs(q);
@@ -46,7 +54,8 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      posts: posts,
+      providers,
+      posts,
     },
   };
 };
