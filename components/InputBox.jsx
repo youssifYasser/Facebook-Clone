@@ -66,13 +66,12 @@ const InputBox = () => {
           removeImage();
         }
       });
-      console.log('post added Successfully!');
+      inputRef.current.value = '';
     } catch (error) {
       console.log('Error adding Post => ', error);
     }
-
-    inputRef.current.value = '';
   };
+
   return (
     <div className="bg-white rounded-2xl mt-6 p-1 sm:p-2 text-gray-500 shadow-md font-medium">
       <div className="flex items-center space-x-2 sm:space-x-4 p-2 sm:p-4">
