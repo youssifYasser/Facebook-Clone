@@ -52,8 +52,6 @@ const InputBox = () => {
         profileImage: session.user.image,
         timestamp: serverTimestamp(),
       }).then((document) => {
-        inputRef.current.value = '';
-
         if (imageToPost) {
           const storageRef = ref(storage, `posts/${document.id}`);
           uploadString(storageRef, imageToPost, 'data_url')
@@ -68,6 +66,7 @@ const InputBox = () => {
           removeImage();
         }
       });
+      inputRef.current.value = '';
     } catch (error) {
       console.log('Error adding Post => ', error);
     }
