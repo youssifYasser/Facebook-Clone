@@ -1,4 +1,4 @@
-import StoryCard from './StoryCard';
+import StoryCard from './StoryCard'
 
 const stories = [
   {
@@ -26,16 +26,16 @@ const stories = [
     src: 'https://links.papareact.com/4u4',
     profile: 'https://links.papareact.com/zvy',
   },
-];
+]
 
 const Stories = () => {
   return (
-    <div className="flex justify-around lg:justify-center lg:space-x-3  mx-auto">
+    <div className='flex justify-around lg:justify-center lg:space-x-3  mx-auto'>
       {stories.map((story) => (
         <StoryCard key={story.src} story={story} />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default Stories;
+export default Stories

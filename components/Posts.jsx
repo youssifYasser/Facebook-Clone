@@ -1,12 +1,12 @@
-import { query, orderBy, collection, getDocs } from 'firebase/firestore';
-import { useCollection } from 'react-firebase-hooks/firestore';
-import { db } from '../firebase';
-import Post from './Post';
+import { query, orderBy, collection, getDocs } from 'firebase/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
+import { db } from '../firebase'
+import Post from './Post'
 
 const Posts = ({ posts }) => {
   const [value] = useCollection(
     query(collection(db, 'posts'), orderBy('timestamp', 'desc'))
-  );
+  )
 
   return (
     <div>
@@ -34,7 +34,7 @@ const Posts = ({ posts }) => {
             />
           ))}
     </div>
-  );
-};
+  )
+}
 
-export default Posts;
+export default Posts
