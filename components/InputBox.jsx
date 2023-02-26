@@ -15,7 +15,7 @@ import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 
 const InputBox = () => {
   const { data: session } = useSession()
-  const inputRef = useRef(null)
+  const [inputMessage, setInputMessage] = useState('')
   const filePickerRef = useRef(null)
   const [imageToPost, setImageToPost] = useState(null)
   const [postActive, setPostActive] = useState(false)
@@ -42,11 +42,13 @@ const InputBox = () => {
   const sendPost = async (e) => {
     e.preventDefault()
 
-    if (!inputRef.current.value) return
+    const message = inputMessage.trim()
+
+    if (!message) return
 
     try {
       await addDoc(collection(db, 'posts'), {
-        message: inputRef.current.value,
+        message: message,
         name: session.user.name,
         email: session.user.email,
         profileImage: session.user.image,
@@ -66,7 +68,7 @@ const InputBox = () => {
           removeImage()
         }
       })
-      inputRef.current.value = ''
+      setInputMessage('')
     } catch (error) {
       console.log('Error adding Post => ', error)
     }
@@ -84,7 +86,8 @@ const InputBox = () => {
         />
         <form className='flex flex-1'>
           <input
-            ref={inputRef}
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
             onFocus={onFocus}
             onBlur={onBlur}
             className={`text-xs sm:text-sm md:text-base bg-gray-100 px-3 sm:px-5 h-10 sm:h-12 rounded-full flex-grow focus:outline-none `}
@@ -142,7 +145,8 @@ const InputBox = () => {
       <div className='p-2 sm:p-4 flex lg:justify-center items-center'>
         <button
           onClick={sendPost}
-          className='bg-blue-500 w-full text-white py-1 sm:py-2 rounded-md active:bg-blue-400 transition-colors duration-150'
+          className='bg-blue-500 w-full text-white py-1 sm:py-2 rounded-md active:bg-blue-400 transition-colors duration-150 disabled:bg-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed'
+          disabled={!inputMessage.trim()}
         >
           Post
         </button>
