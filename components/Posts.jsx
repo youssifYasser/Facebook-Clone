@@ -15,7 +15,6 @@ const Posts = ({ posts }) => {
             <Post
               key={post.id}
               name={post.data().name}
-              email={post.data().email}
               message={post.data().message}
               profileImage={post.data().profileImage}
               postImage={post.data().postImage}
@@ -26,7 +25,6 @@ const Posts = ({ posts }) => {
             <Post
               key={post.id}
               name={post.name}
-              email={post.email}
               message={post.message}
               profileImage={post.profileImage}
               postImage={post.postImage}

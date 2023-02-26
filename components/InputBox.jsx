@@ -50,7 +50,6 @@ const InputBox = () => {
       await addDoc(collection(db, 'posts'), {
         message: message,
         name: session.user.name,
-        email: session.user.email,
         profileImage: session.user.image,
         timestamp: serverTimestamp(),
       }).then((document) => {

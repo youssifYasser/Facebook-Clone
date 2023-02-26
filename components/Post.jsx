@@ -6,7 +6,7 @@ import {
 import Image from 'next/image'
 import { useState } from 'react'
 
-const Post = ({ name, email, message, profileImage, postImage, timestamp }) => {
+const Post = ({ name, message, profileImage, postImage, timestamp }) => {
   const [showMessage, setShowMessage] = useState(false)
   return (
     <div className='flex flex-col bg-white rounded-2xl shadow-md mt-6'>
